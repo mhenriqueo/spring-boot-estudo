@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.mhenrique.spring.boot.estudo.model.AtoresModel;
 import br.com.mhenrique.spring.boot.estudo.model.FilmesModel;
+import br.com.mhenrique.spring.boot.estudo.repository.AtoresRepository;
 import br.com.mhenrique.spring.boot.estudo.repository.FilmesRepository;
 
 @Service
@@ -13,9 +15,18 @@ public class FilmesService {
 	
 	@Autowired
 	private FilmesRepository filmesRepository;
+	
+	@Autowired
+	private AtoresRepository atoresRepository;
 		
 	public FilmesModel cadastrarFilmes(FilmesModel filme){
 		return filmesRepository.save(filme);
+	}
+	
+	public AtoresModel escalarAtoresNoFilme(String nomeFilme, AtoresModel atores) {
+		var filmeBuscado = filmesRepository.findByNomeFilme(nomeFilme);
+		atores.setFilmesModel(filmeBuscado);
+		return atoresRepository.save(atores);
 	}
 	
 	public List<FilmesModel> consultarListaDeFilmes() {
