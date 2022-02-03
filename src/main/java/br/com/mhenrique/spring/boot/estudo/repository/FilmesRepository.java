@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import br.com.mhenrique.spring.boot.estudo.model.FilmesModel;
 
 @Repository
-public interface FilmesRepository extends JpaRepository<FilmesModel, Long> {
-	FilmesModel findByNomeFilme(String nomeFilme);
+public interface FilmesRepository extends JpaRepository<FilmesModel, Integer> {
+	
+	FilmesModel findByNomeFilmeContainingIgnoreCase(String nomeFilme);
 }

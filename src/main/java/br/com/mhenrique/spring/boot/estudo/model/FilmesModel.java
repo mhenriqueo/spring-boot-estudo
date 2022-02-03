@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +22,9 @@ public class FilmesModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;	
+	private Integer id;	
 	@Column
+	@NotBlank(message = "O nome é obrigatório")
 	private String nomeFilme;
 	@Column
 	private String duracaoFilme;
@@ -40,12 +42,4 @@ public class FilmesModel {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "filmes_id")
 	private List<AtoresModel> atores;
-	
-//	@JoinTable(name = "Filmes_Atores", joinColumns = @JoinColumn(name = "filmes_id"), inverseJoinColumns = @JoinColumn(name = "ator_id"))
-	
-	
-//	@Override
-//	public String toString() {
-//		return "Filme: " + nomeFilme + " / Duração: " + duracaoFilme + " / Classificação: " + classificacaoIndicativa;
-//	}
 }

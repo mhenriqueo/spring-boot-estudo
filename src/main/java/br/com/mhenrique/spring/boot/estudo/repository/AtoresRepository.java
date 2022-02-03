@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import br.com.mhenrique.spring.boot.estudo.model.AtoresModel;
 
 @Repository
-public interface AtoresRepository extends JpaRepository<AtoresModel, Long>{
-	AtoresModel findByNomeAtor(String nomeAtor);
+public interface AtoresRepository extends JpaRepository<AtoresModel, Integer>{
+	
 }
